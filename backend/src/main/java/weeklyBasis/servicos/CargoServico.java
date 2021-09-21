@@ -12,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CargoServico {
 
+    @Autowired
     private final CargoRepositorio cargoRepositorio;
 
     public List<Cargo> listaCargos(){

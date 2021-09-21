@@ -6,4 +6,5 @@ import weeklyBasis.dominios.Evento;
 
 @Repository
 public interface EventoRepositorio extends JpaRepository<Evento, Long> {
+
 }

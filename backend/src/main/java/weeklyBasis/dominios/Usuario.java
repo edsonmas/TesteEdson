@@ -13,7 +13,6 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class Usuario implements Serializable {
 
     @Id
@@ -30,17 +29,16 @@ public class Usuario implements Serializable {
     private Boolean statusAtivo = true;
 
     @Column(name = "dt_nascimento")
-    private LocalDate data_nascimento;
+    private LocalDate dataNascimento;
 
-    private byte[] foto;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "usuario_id")
+    @JoinColumn(name = "id_cargo")
     private Cargo cargo;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "evento_usuario", joinColumns =
-            @JoinColumn(name = "usuario_id"),
+    @JoinColumn(name = "usuario_id"),
             inverseJoinColumns = @JoinColumn(name = "evento_id")
     )
     private List<Evento> eventos = new ArrayList<>();
