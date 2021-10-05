@@ -1,0 +1,58 @@
+<p>Cadastrar Usuários</p>
+<hr/>
+<div class="container ui-fluid">
+    <form class="form ui-g" [formGroup]="form" (submit)="cadastrar()">
+
+        <div class="ui-sm-12 ui-md-6 ui-lg-4 ui-xl-6">
+            <div>Nome</div>
+            <input type="text" pInputText placeholder="nome" formControlName="nome">
+            <app-mensagem
+            *ngIf="form.get('nome')?.errors && form.get('nome')?. touched"
+            mensagem="Nome incorreto"
+            ></app-mensagem>
+        </div>
+
+        <div class="ui-sm-12 ui-md-6 ui-lg-4 ui-xl-6">
+            <div>Email</div>
+            <input type="email" pInputText placeholder="email" formControlName="email">
+            <app-mensagem
+            *ngIf="form.get('email')?.errors?.required && form.get('email')?. touched"
+            mensagem="Email Obrigatório">
+            </app-mensagem>
+            <app-mensagem
+            *ngIf="form.get('email')?.errors?.email && form.get('email')?.touched"
+            mensagem="Email no formato incorreto">
+            </app-mensagem>
+        </div>
+
+
+        <div class="ui-sm-12 ui-md-6 ui-lg-4 ui-xl-4">
+            <div>Cpf</div>
+            <p-inputMask class="ui-fluid" mask="999.999.999-99" [unmask]="true" formControlName="cpf"></p-inputMask>
+            <app-mensagem
+            *ngIf="form.get('cpf')?.errors?.required && form.get('cpf')?. touched"
+            mensagem="Cpf Obrigatório">
+            </app-mensagem>
+            <app-mensagem
+            *ngIf="form.get('cpf')?.errors?.cpf && form.get('cpf')?.touched"
+            mensagem="Cpf no formato incorreto">
+            </app-mensagem>
+        </div>
+
+        <div class="ui-sm-12 ui-md-6 ui-lg-4 ui-xl-4">
+            <label for="cargo">Cargo</label>
+            <p-dropdown class="ui-fluid" [options]="cargos" formControlName="cargo"></p-dropdown>
+        </div>
+
+        <div class="ui-sm-12 ui-md-6 ui-lg-4 ui-xl-4">
+            <div>Data de Nascimento</div>
+            <p-calendar formControlName="dataNascimento"></p-calendar>
+        </div>
+
+        <div class="ui-g-12">
+            <p-button class="ui-fluid" label="Salvar" (onClick)="cadastrar()"></p-button>
+
+            <p-button class="ui-fluid" label="Cancelar" (onClick)="cadastrar()"></p-button>
+        </div>
+    </form>
+</div>
